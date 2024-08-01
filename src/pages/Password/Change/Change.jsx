@@ -22,7 +22,7 @@ const Change = () => {
             id="password"
             placeholder="Confirm Password"
           />
-          <HashLink to="/Login">
+          <HashLink to="/ThankYou">
             <button type="submit">Enviar</button>
           </HashLink>
         </form>

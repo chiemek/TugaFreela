@@ -6,7 +6,7 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
 import Change from "./pages/Password/Change/Change";
-import Confirm from "./pages/SignUp/Confirm/Confirm";
+import Confirm from "./pages/Password/Confirm/Confirm";
 import Email from "./pages/Password/Email/Email";
 import Privacy from "./pages/Privacy/Privacy";
 import Basic from "./pages/SignUp/Basic/Basic";
@@ -16,6 +16,7 @@ import Terms from "./pages/Terms/Terms";
 import ContactUs from "./pages/ContactUs/ContactUs";
 import Freelance from "./pages/Freelance/Freelance";
 import FAQ from "./pages/FAQ/FAQ";
+import ThankYou from "./pages/Password/ThankYou/ThankYou";
 // import Header from "./components/Header/Header";
 // import Footer from "./components/Footer/Footer";
 // import Footer2 from "./components/Footer/Footer2/Footer2";
@@ -38,6 +39,7 @@ function App() {
           <Route path="/ContactUs" element={<ContactUs />} />
           <Route path="/Freelance" element={<Freelance />} />
           <Route path="/FAQ" element={<FAQ />} />
+          <Route path="/ThankYou" element={<ThankYou />} />
         </Routes>
 
         {/* <Header /> */}

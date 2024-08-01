@@ -1,0 +1,35 @@
+.container90 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 5rem 0 15rem 0;
+  text-align: center;
+
+  img {
+    width: 3rem;
+    height: 3rem;
+    margin-bottom: 1.5rem;
+  }
+
+  h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  p {
+    margin-bottom: 1.5rem;
+    color: #757373;
+  }
+
+  #link {
+    text-decoration: none;
+
+    button {
+      background-color: rgb(210, 86, 230);
+      padding: 1rem 4rem;
+    }
+  }
+}
