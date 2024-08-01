@@ -2,8 +2,18 @@ import Header from "../../../components/Header/Header";
 import Footer2 from "../../../components/Footer/Footer2/Footer2";
 import "./Basic.css";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const Basic = () => {
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [dob, setDob] = useState("");
+  const [address, setAddress] = useState("");
+  const [postalCode, setPostalCode] = useState("");
+  const [state, setState] = useState("");
+  const [password, setPassword] = useState("");
+  const [confim, setConfirm] = useState("");
+
   return (
     <>
       <Header />
@@ -23,7 +33,13 @@ const Basic = () => {
             </div>
           </div>
           <div className="phone">
-            <input type="text" name="phone" id="phone" placeholder="Telefone" />
+            <input
+              type="text"
+              name="phone"
+              id="phone"
+              placeholder="Telefone"
+              onChange={(e) => setPhone(e.target.value)}
+            />
             <input type="text" name="sms" id="sms" placeholder="SMS" />
           </div>
           <div className="email">
@@ -48,7 +64,7 @@ const Basic = () => {
               id="postal"
               placeholder="Código Postal"
             />
-            <input type="text" name="Cidade" id="Cidade" placeholder="Cidade" />
+            <input type="text" name="state" id="Cidade" placeholder="Cidade" />
           </div>
           <input
             type="password"
