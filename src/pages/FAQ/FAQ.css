@@ -1,0 +1,33 @@
+.faq-con {
+  display: flex;
+  padding: 5rem;
+
+  .right {
+    width: 40%;
+    padding: 5rem 3rem;
+
+    h3 {
+      font-weight: normal;
+      margin-bottom: 1rem;
+      cursor: pointer;
+
+      &.active {
+        color: rgb(161, 90, 227);
+      }
+    }
+  }
+
+  .left {
+    padding-right: 3rem;
+
+    h2 {
+      font-size: 2rem;
+      font-weight: normal;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      margin-bottom: 2rem;
+    }
+  }
+}

@@ -1,0 +1,84 @@
+.container {
+  display: flex;
+  /* height: 90vh; */
+  justify-content: center;
+  align-items: center;
+  padding-block: 3rem;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    width: 30vw;
+
+    h2 {
+      font-size: 1.7rem;
+      font-weight: normal;
+      text-align: center;
+      margin-bottom: 2rem;
+
+      span {
+        font-weight: bold;
+      }
+    }
+
+    .radio {
+      display: flex;
+      justify-content: space-between;
+      padding-inline: 2rem;
+
+      .ray {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+      }
+    }
+
+    .phone,
+    .email {
+      display: flex;
+      justify-content: space-between;
+
+      input {
+        width: 47%;
+      }
+    }
+
+    input {
+      height: 2.5rem;
+      background-color: #f0f0f0;
+      border-radius: 3px;
+      margin-bottom: 0.5rem;
+      padding-inline: 1rem;
+      border: none;
+    }
+
+    .terms {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      font-size: 0.7rem;
+      padding: 0;
+
+      #terms {
+        display: inline-block;
+        width: 1rem;
+      }
+    }
+
+    button {
+      background-color: #333;
+    }
+
+    #dob {
+      margin-bottom: 0;
+    }
+
+    .dob {
+      font-size: 0.7rem;
+      margin-bottom: 0.5rem;
+      padding-left: 0.5rem;
+    }
+  }
+}

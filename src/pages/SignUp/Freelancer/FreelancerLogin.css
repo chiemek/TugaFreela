@@ -1,0 +1,102 @@
+.container2 {
+  display: flex;
+  /* height: 90vh; */
+  justify-content: center;
+  align-items: center;
+  padding-block: 5rem;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    width: 25vw;
+
+    h2 {
+      font-size: 1.7rem;
+      font-weight: normal;
+      text-align: center;
+      margin-bottom: 2rem;
+
+      span {
+        font-weight: bold;
+      }
+    }
+
+    .name {
+      display: flex;
+      justify-content: space-between;
+
+      input {
+        width: 47%;
+      }
+    }
+
+    input {
+      height: 2.5rem;
+      background-color: #f0f0f0;
+      border-radius: 3px;
+      margin-bottom: 0.5rem;
+      padding-inline: 1rem;
+      border: none;
+    }
+
+    .file {
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+      padding: 0.5rem 1rem;
+
+      img {
+        width: 6rem;
+        height: 6rem;
+      }
+
+      button {
+        width: 100%;
+        background-color: rgb(167, 98, 231);
+      }
+    }
+
+    button {
+      background-color: #333;
+      width: 100%;
+    }
+
+    #dob {
+      margin-bottom: 0;
+    }
+
+    .dob {
+      font-size: 0.7rem;
+      margin-bottom: 0.5rem;
+      padding-left: 0.5rem;
+    }
+
+    .cat {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+
+      select {
+        height: 2.5rem;
+        flex: 1;
+        padding-inline: 1rem;
+        background-color: #f0f0f0;
+        border: none;
+        border-radius: 3px;
+        margin-bottom: 1rem;
+      }
+    }
+
+    #desc {
+      border: none;
+      background-color: #f0f0f0;
+      padding: 0.5rem;
+    }
+
+    .counter {
+      font-size: 0.7rem;
+      padding-left: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+  }
+}

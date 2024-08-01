@@ -1,0 +1,17 @@
+.terms {
+  padding: 5rem;
+
+  img {
+    width: 5rem;
+    height: 0.5rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+    font-weight: normal;
+  }
+
+  p {
+    padding-block: 2rem;
+  }
+}

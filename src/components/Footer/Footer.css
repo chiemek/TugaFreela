@@ -1,0 +1,71 @@
+footer {
+  width: 100%;
+  background-color: rgba(54, 54, 54, 1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-inline: 7rem;
+  padding-block: 3.5rem;
+
+  ul {
+    list-style: none;
+  }
+
+  a {
+    color: #e5dcdc;
+    text-decoration: none;
+    font-size: 0.8rem;
+  }
+
+  a:hover {
+    color: #c6c2c2;
+  }
+
+  .logo {
+    /* border: 1px solid #fff; */
+
+    img {
+      width: 15rem;
+      height: 4rem;
+      margin-bottom: 1.5rem;
+    }
+
+    ul {
+      padding-left: 2rem;
+    }
+  }
+
+  .freelancer,
+  .customer {
+    /* border: 1px solid white; */
+    height: 10.5rem;
+    width: 11.15rem;
+    padding: 1rem 2rem;
+
+    ul > li:first-child a {
+      color: rgba(214, 184, 255, 1);
+      margin-bottom: 3.5rem;
+      display: inline-block;
+    }
+  }
+
+  .follow-us {
+    /* border: 1px solid white; */
+    height: 10.5rem;
+    width: 11.15rem;
+    padding: 1rem 2rem;
+
+    h3 {
+      color: rgba(214, 184, 255, 1);
+      margin-bottom: 3.5rem;
+      display: inline-block;
+      font-size: 0.8rem;
+    }
+
+    img {
+      width: 1.5rem;
+      height: 1.5rem;
+      margin-left: 0.2rem;
+    }
+  }
+}

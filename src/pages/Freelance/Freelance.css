@@ -1,0 +1,161 @@
+#how-it-works {
+  /* padding: 5rem; */
+
+  h2 {
+    text-align: center;
+    font-size: 3rem;
+    font-weight: 500;
+    padding: 4rem 0 5rem 0;
+  }
+
+  section {
+    padding: 5rem;
+    display: flex;
+    flex-direction: column;
+
+    .right,
+    .left {
+      display: flex;
+      align-items: center;
+      /* justify-content: space-between; */
+
+      .group {
+        width: 30rem;
+      }
+    }
+
+    .right {
+      justify-content: flex-end;
+    }
+
+    .text {
+      /* border: 1px solid; */
+
+      h3 {
+        font-size: 3rem;
+        text-align: left;
+        font-weight: 500;
+        margin-bottom: 3rem;
+      }
+
+      p {
+        font-size: 1.5rem;
+      }
+    }
+
+    .line {
+      width: 60vw;
+      padding-left: 0;
+      align-self: center;
+    }
+
+    .button {
+      margin-block: 5rem;
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+    }
+
+    .right-now {
+      display: flex;
+      align-items: center;
+      padding: 3rem 0;
+      justify-content: space-between;
+
+      .group-now {
+        width: 40rem;
+      }
+
+      .text-now {
+        /* border: 1px solid; */
+        width: 30rem;
+
+        h3 {
+          font-size: 2rem;
+          text-align: left;
+          font-weight: 500;
+          margin-bottom: 3rem;
+        }
+
+        p {
+          font-size: 1rem;
+          margin-bottom: 3rem;
+        }
+      }
+    }
+  }
+
+  .reviews {
+    background-color: #edecec;
+    padding: 7rem 4rem;
+
+    h4 {
+      font-size: 3rem;
+      text-align: center;
+      padding-bottom: 8rem;
+      font-weight: normal;
+
+      span {
+        font-weight: bold;
+        color: rgb(177, 137, 239);
+      }
+    }
+
+    .card-container {
+      display: flex;
+      flex-wrap: nowrap;
+      overflow: hidden;
+      gap: 3rem;
+      width: auto;
+    }
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5rem 3rem;
+    width: 38rem;
+    border-radius: 10px;
+    background-color: #fff;
+
+    img {
+      width: 15rem;
+      margin-bottom: 3rem;
+    }
+  }
+
+  .last {
+    padding: 5rem;
+
+    h3 {
+      text-align: center;
+      font-size: 2rem;
+      padding-block: 5rem;
+
+      & span {
+        color: rgb(177, 137, 239);
+        display: inline-block;
+        margin-bottom: 3rem;
+      }
+    }
+
+    .set {
+      display: flex;
+      justify-content: center;
+      gap: 5rem;
+      margin-bottom: 7rem;
+      align-items: center;
+
+      .lastOne {
+        width: 10rem;
+        height: 10rem;
+      }
+    }
+
+    .liner {
+      width: 10rem;
+      height: 2rem;
+    }
+  }
+}
