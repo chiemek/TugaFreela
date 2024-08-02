@@ -19,7 +19,7 @@ const Basic = () => {
     e.preventDefault();
 
     axios
-      .post("http://localhost:5000/add", {
+      .post("http://localhost:5000/basic", {
         phoneNumber,
         email,
         dateOfBirth,
