@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const basicSchema = new mongoose.Schema({
+const contactSchema = new mongoose.Schema({
   phoneNumber: String,
   email: String,
   dateOfBirth: Date,
@@ -11,4 +11,4 @@ const basicSchema = new mongoose.Schema({
   confirmPassword: String,
 });
 
-module.exports = mongoose.model("Basic", basicSchema);
+module.exports = mongoose.model("Contact", contactSchema);

@@ -17,6 +17,7 @@ import ContactUs from "./pages/ContactUs/ContactUs";
 import Freelance from "./pages/Freelance/Freelance";
 import FAQ from "./pages/FAQ/FAQ";
 import ThankYou from "./pages/Password/ThankYou/ThankYou";
+import NotFound from "./components/NotFound/NotFound";
 // import Header from "./components/Header/Header";
 // import Footer from "./components/Footer/Footer";
 // import Footer2 from "./components/Footer/Footer2/Footer2";
@@ -40,6 +41,7 @@ function App() {
           <Route path="/Freelance" element={<Freelance />} />
           <Route path="/FAQ" element={<FAQ />} />
           <Route path="/ThankYou" element={<ThankYou />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
 
         {/* <Header /> */}
