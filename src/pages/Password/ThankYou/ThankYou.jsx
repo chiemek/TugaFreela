@@ -12,7 +12,7 @@ const ThankYou = () => {
         <img src={EmailLogo} alt="logo email" />
         <h2>Obrigado por confirmar seu cadastro</h2>
         <p>Agora já pode continuar seu cadastro</p>
-        <HashLink to="/" id="link">
+        <HashLink to="/Login" id="link">
           <button>Entrar</button>
         </HashLink>
       </div>

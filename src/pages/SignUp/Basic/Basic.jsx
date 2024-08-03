@@ -14,7 +14,9 @@ const Basic = () => {
   const [state, setState] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirm] = useState("");
+  const [role, setRole] = useState("");
 
+  //for forms
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -28,6 +30,7 @@ const Basic = () => {
         state,
         password,
         confirmPassword,
+        role,
       })
       .then(() => {
         console.log("success");
@@ -47,6 +50,11 @@ const Basic = () => {
     console.log("Form submitted");
   };
 
+  // handle change for radio buttons
+  const handleRadioChange = (e) => {
+    setRole(e.target.value);
+  };
+
   return (
     <>
       <Header />
@@ -57,11 +65,25 @@ const Basic = () => {
           </h2>
           <div className="radio">
             <div className="ray">
-              <input type="radio" name="client" id="client" />
+              <input
+                type="radio"
+                name="role"
+                id="client"
+                value="client"
+                checked={role === "client"}
+                onChange={handleRadioChange}
+              />
               <label htmlFor="client">Cliente</label>
             </div>
             <div className="ray">
-              <input type="radio" name="freelancer" id="freelancer" />
+              <input
+                type="radio"
+                name="role"
+                id="freelancer"
+                value="freelancer"
+                checked={role === "freelancer"}
+                onChange={handleRadioChange}
+              />
               <label htmlFor="freelancer">freelancer</label>
             </div>
           </div>

@@ -3,16 +3,25 @@ import Footer2 from "../../../components/Footer/Footer2/Footer2";
 import Header from "../../../components/Header/Header";
 import Profile from "../../../assets/images/photoIcon.png";
 import { useState } from "react";
+import axios from "axios";
 import "./Customer.css";
 
 const Customer = () => {
+  // State hooks for form data
   const [desc, setDesc] = useState("");
   const [wordCount, setWordCount] = useState(0);
   const maxWords = 500;
 
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [id, setId] = useState("");
+  const [title, setTitle] = useState("");
+  const [rate, setRate] = useState("");
+  const [profile, setProfile] = useState(null); // Change to hold file data
+
   const handleChange = (e) => {
     const text = e.target.value;
-    const words = text;
+    const words = text.split(" ");
     if (words.length <= maxWords) {
       setDesc(text);
       setWordCount(words.length);
@@ -23,11 +32,71 @@ const Customer = () => {
     }
   };
 
+  const handleFileChange = (e) => {
+    setProfile(e.target.files[0]); // Store the selected file
+  };
+
+  const uploadToCloudinary = async (file) => {
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("upload_preset", "mghfoiqj"); // Replace with your actual upload preset
+
+    try {
+      const response = await axios.post(
+        "https://api.cloudinary.com/v1_1/dsd2dgasn/image/upload",
+        formData
+      );
+      return response.data.secure_url;
+    } catch (error) {
+      console.error("Error uploading image to Cloudinary:", error);
+      throw error;
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      let fileUrl = "";
+
+      if (profile) {
+        fileUrl = await uploadToCloudinary(profile);
+      }
+
+      const formData = {
+        firstName,
+        lastName,
+        id,
+        title,
+        rate,
+        description: desc,
+        fileUrl, // Include the Cloudinary file URL
+      };
+
+      await axios.post("http://localhost:5000/upload", formData);
+
+      // Reset form fields
+      setDesc("");
+      setWordCount(0);
+      setFirstName("");
+      setLastName("");
+      setId("");
+      setTitle("");
+      setRate("");
+      setProfile(null); // Clear the file input
+
+      alert("Form submitted successfully!");
+    } catch (error) {
+      console.error("Error submitting the form:", error);
+      alert("Error submitting the form. Please try again.");
+    }
+  };
+
   return (
     <>
       <Header />
       <div className="container2">
-        <form action="/submit" method="POST">
+        <form onSubmit={handleSubmit}>
           <HashLink to="/">
             <p id="skip"> Skip</p>
           </HashLink>
@@ -36,35 +105,58 @@ const Customer = () => {
           </h2>
 
           <div className="name">
-            <input type="text" name="Nome" id="Nome" placeholder="Nome" />
             <input
               type="text"
-              name="Apelido"
+              name="firstName"
+              id="Nome"
+              placeholder="Nome"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+            />
+            <input
+              type="text"
+              name="lastName"
               id="Apelido"
               placeholder="Apelido"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
             />
           </div>
-          <input type="text" name="id" id="id" placeholder="ID" />
+          <input
+            type="text"
+            name="id"
+            id="id"
+            placeholder="ID"
+            value={id}
+            onChange={(e) => setId(e.target.value)}
+          />
           <input
             type="file"
-            name="profile"
+            name="File"
             id="profile"
-            style={{ display: "none" }}
+            onChange={handleFileChange}
           />
           <label htmlFor="profile" className="file">
             <img src={Profile} alt="" />
-            <button>Add Photo</button>
+            <button
+              type="button"
+              onClick={() => document.getElementById("profile").click()}
+            >
+              Add Photo
+            </button>
           </label>
 
           <input
             type="text"
-            name="tittle"
+            name="title"
             id="title"
             placeholder="Título Profissional"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
           />
 
           <textarea
-            name="desc"
+            name="description"
             id="desc"
             value={desc}
             onChange={handleChange}
@@ -77,11 +169,16 @@ const Customer = () => {
           <div className="counter">
             {wordCount}/{maxWords} words
           </div>
-          <input type="text" name="rate" id="rate" placeholder="Taxa/hora" />
+          <input
+            type="text"
+            name="rate"
+            id="rate"
+            placeholder="Taxa/hora"
+            value={rate}
+            onChange={(e) => setRate(e.target.value)}
+          />
 
-          <HashLink to="/Dashboard">
-            <button type="submit"> Cadastrar</button>
-          </HashLink>
+          <button type="submit"> Cadastrar</button>
         </form>
       </div>
 

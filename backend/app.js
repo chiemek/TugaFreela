@@ -1,31 +1,57 @@
 const express = require("express");
+require("dotenv").config();
 const mongoose = require("mongoose");
 const cors = require("cors");
-const multer = require("multer");
+const jwt = require("jsonwebtoken");
 
 // Import models
 const Basic = require("./models/basic");
 const Freelancer = require("./models/freelancer");
 const Contact = require("./models/contact");
+const Client = require("./models/client");
+const uploadRoute = require("./utilities/uploadRoute");
+const Login = require("./models/login");
 
 const app = express();
-const port = 5000;
+const port = process.env.PORT || 5000;
+const MONGO_URI = process.env.MONGO_URI;
 
-// MongoDB URI
-const uri =
-  "mongodb+srv://mekus1085:actbrisL1HtSy179@cluster0.70tsqwv.mongodb.net/users?retryWrites=true&w=majority";
+// Registration route
+app.post("/register", async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    // Check if the user already exists
+    const existingUser = await Login.findOne({ email });
+    if (existingUser) {
+      return res.status(400).send("User already exists");
+    }
+
+    // Create a new user
+    const user = new Login({ email, password });
+    await user.save();
+
+    res.status(201).send("User registered successfully");
+  } catch (error) {
+    console.error("Error registering user:", error);
+    res.status(500).send("Internal Server Error");
+  }
+});
 
 // Connect to MongoDB
 mongoose
-  .connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(MONGO_URI)
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.error("Error connecting to MongoDB:", err));
 
 // Middleware setup
 app.use(express.json());
 app.use(cors());
+app.use("/api", uploadRoute); // Use the router
+app.use(express.urlencoded({ extended: true })); // Parse URL-encoded bodies
 
-// Basic routes
+//
+// Basic collection routes
 app.get("/basic", async (req, res) => {
   try {
     const basics = await Basic.find();
@@ -67,7 +93,7 @@ app.put("/basic/:id", async (req, res) => {
   }
 });
 
-// Freelancer routes
+// Freelancer collection routes
 app.get("/freelancer", async (req, res) => {
   try {
     const freelancers = await Freelancer.find();
@@ -109,7 +135,7 @@ app.put("/freelancer/:id", async (req, res) => {
   }
 });
 
-// Contact routes
+// Contact collection routes
 app.get("/contact", async (req, res) => {
   try {
     const contacts = await Contact.find();
