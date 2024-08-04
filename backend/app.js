@@ -1,42 +1,16 @@
 const express = require("express");
-require("dotenv").config();
 const mongoose = require("mongoose");
 const cors = require("cors");
-const jwt = require("jsonwebtoken");
+require("dotenv").config();
+const bcrypt = require("bcryptjs");
 
-// Import models
-const Basic = require("./models/basic");
-const Freelancer = require("./models/freelancer");
-const Contact = require("./models/contact");
-const Client = require("./models/client");
-const uploadRoute = require("./utilities/uploadRoute");
-const Login = require("./models/login");
-
+// Initialize Express app
 const app = express();
-const port = process.env.PORT || 5000;
+app.use(cors());
+app.use(express.json());
+
+// Define the MONGO_URI
 const MONGO_URI = process.env.MONGO_URI;
-
-// Registration route
-app.post("/register", async (req, res) => {
-  const { email, password } = req.body;
-
-  try {
-    // Check if the user already exists
-    const existingUser = await Login.findOne({ email });
-    if (existingUser) {
-      return res.status(400).send("User already exists");
-    }
-
-    // Create a new user
-    const user = new Login({ email, password });
-    await user.save();
-
-    res.status(201).send("User registered successfully");
-  } catch (error) {
-    console.error("Error registering user:", error);
-    res.status(500).send("Internal Server Error");
-  }
-});
 
 // Connect to MongoDB
 mongoose
@@ -44,140 +18,252 @@ mongoose
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.error("Error connecting to MongoDB:", err));
 
-// Middleware setup
-app.use(express.json());
-app.use(cors());
-app.use("/api", uploadRoute); // Use the router
-app.use(express.urlencoded({ extended: true })); // Parse URL-encoded bodies
+// Define User Schema
+const userSchema = new mongoose.Schema({
+  role: { type: String, required: true },
+  phoneNumber: String,
+  email: { type: String, required: true, unique: true },
+  dateOfBirth: Date,
+  address: String,
+  postalCode: String,
+  state: String,
+  password: { type: String, required: true },
+  firstName: String,
+  lastName: String,
+  id: String,
+  nif: String,
+  citizenCard: String,
+  title: String,
+  categories: [String], // Array of categories
+  description: String,
+  rate: Number,
+});
 
-//
-// Basic collection routes
-app.get("/basic", async (req, res) => {
+const User = mongoose.model("User", userSchema);
+
+// Endpoint to set specific fields to null
+app.post("/signup-clientSkip", async (req, res) => {
   try {
-    const basics = await Basic.find();
-    res.json(basics);
+    const {
+      role,
+      phoneNumber,
+      email,
+      dateOfBirth,
+      address,
+      postalCode,
+      state,
+      password,
+      confirmPassword,
+      firstName,
+      lastName,
+      id,
+      nif,
+      citizenCard,
+      title,
+      categories,
+      description,
+      rate,
+    } = req.body;
+
+    // Check for required fields
+    if (!role || !email || !password || !confirmPassword) {
+      return res.status(400).json({
+        error: "Role, email, password, and confirm password are required",
+      });
+    }
+
+    // Validate password match
+    if (password !== confirmPassword) {
+      return res.status(400).json({ error: "Passwords do not match" });
+    }
+
+    // Hash the password
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Prepare user data with default null values for missing fields
+    const newUser = {
+      role: role || null,
+      phoneNumber: phoneNumber || null,
+      email: email || null,
+      dateOfBirth: dateOfBirth || null,
+      address: address || null,
+      postalCode: postalCode || null,
+      state: state || null,
+      password: hashedPassword,
+      firstName: null,
+      lastName: null,
+      id: null,
+      nif: null,
+      citizenCard: null,
+      title: null,
+      categories: null,
+      description: null,
+      rate: null,
+    };
+
+    // Save the user
+    const user = new User(newUser);
+    await user.save();
+    res.status(201).json({
+      message:
+        "User created successfully with fields set to null where not provided",
+    });
   } catch (error) {
-    console.error("Error fetching basics:", error);
-    res.status(500).send("Internal Server Error");
+    console.error("Error creating user:", error);
+    res
+      .status(500)
+      .json({ error: "Internal server error", details: error.message });
   }
 });
 
-app.post("/basic", async (req, res) => {
-  const basic = new Basic(req.body);
+// Endpoint to set id to null but collect the remaining data from the frontend
+app.post("/signup-freelancer", async (req, res) => {
   try {
-    await basic.save();
-    res.json(basic);
+    const {
+      role,
+      phoneNumber,
+      email,
+      dateOfBirth,
+      address,
+      postalCode,
+      state,
+      password,
+      confirmPassword,
+      firstName,
+      lastName,
+      id,
+      nif,
+      citizenCard,
+      title,
+      categories,
+      description,
+      rate,
+    } = req.body;
+
+    // Check for required fields
+    if (!role || !email || !password || !confirmPassword) {
+      return res.status(400).json({
+        error: "Role, email, password, and confirm password are required",
+      });
+    }
+
+    // Validate password match
+    if (password !== confirmPassword) {
+      return res.status(400).json({ error: "Passwords do not match" });
+    }
+
+    // Hash the password
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Prepare user data with default null values for missing fields
+    const newUser = {
+      role: role || null,
+      phoneNumber: phoneNumber || null,
+      email: email || null,
+      dateOfBirth: dateOfBirth || null,
+      address: address || null,
+      postalCode: postalCode || null,
+      state: state || null,
+      password: hashedPassword,
+      firstName: firstName || null,
+      lastName: lastName || null,
+      id: null, // Set id to null
+      nif: nif || null,
+      citizenCard: citizenCard || null,
+      title: title || null,
+      categories: categories || null,
+      description: description || null,
+      rate: rate || null,
+    };
+
+    // Save the user
+    const user = new User(newUser);
+    await user.save();
+    res
+      .status(201)
+      .json({ message: "User created successfully with id set to null" });
   } catch (error) {
-    console.error("Error adding basic:", error);
-    res.status(500).send("Internal Server Error");
+    console.error("Error creating user:", error);
+    res
+      .status(500)
+      .json({ error: "Internal server error", details: error.message });
   }
 });
 
-app.delete("/basic/:id", async (req, res) => {
+// Endpoint to set nif and citizenCard to null but collect the remaining data from the frontend
+app.post("/signup-client", async (req, res) => {
   try {
-    await Basic.deleteOne({ _id: req.params.id });
-    res.send("true");
+    const {
+      role,
+      phoneNumber,
+      email,
+      dateOfBirth,
+      address,
+      postalCode,
+      state,
+      password,
+      confirmPassword,
+      firstName,
+      lastName,
+      id,
+      nif,
+      citizenCard,
+      title,
+      categories,
+      description,
+      rate,
+    } = req.body;
+
+    // Check for required fields
+    if (!role || !email || !password || !confirmPassword) {
+      return res.status(400).json({
+        error: "Role, email, password, and confirm password are required",
+      });
+    }
+
+    // Validate password match
+    if (password !== confirmPassword) {
+      return res.status(400).json({ error: "Passwords do not match" });
+    }
+
+    // Hash the password
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Prepare user data with default null values for missing fields
+    const newUser = {
+      role: role,
+      phoneNumber: phoneNumber,
+      email: email,
+      dateOfBirth: dateOfBirth,
+      address: address,
+      postalCode: postalCode,
+      state: state,
+      password: hashedPassword,
+      firstName: firstName,
+      lastName: lastName,
+      id: id || null,
+      nif: null, // Set nif to null
+      citizenCard: null, // Set citizenCard to null
+      title: null,
+      categories: null,
+      description: description,
+      rate: null,
+    };
+
+    // Save the user
+    const user = new User(newUser);
+    await user.save();
+    res.status(201).json({
+      message: "User created successfully with nif and citizenCard set to null",
+    });
   } catch (error) {
-    console.error("Error deleting basic:", error);
-    res.status(500).send("Internal Server Error");
+    console.error("Error creating user:", error);
+    res
+      .status(500)
+      .json({ error: "Internal server error", details: error.message });
   }
 });
 
-app.put("/basic/:id", async (req, res) => {
-  try {
-    await Basic.updateOne({ _id: req.params.id }, req.body);
-    res.send("update successful");
-  } catch (error) {
-    console.error("Error updating basic:", error);
-    res.status(500).send("Internal Server Error");
-  }
-});
-
-// Freelancer collection routes
-app.get("/freelancer", async (req, res) => {
-  try {
-    const freelancers = await Freelancer.find();
-    res.json(freelancers);
-  } catch (error) {
-    console.error("Error fetching freelancers:", error);
-    res.status(500).send("Internal Server Error");
-  }
-});
-
-app.post("/freelancer", async (req, res) => {
-  const freelancer = new Freelancer(req.body);
-  try {
-    await freelancer.save();
-    res.json(freelancer);
-  } catch (error) {
-    console.error("Error adding freelancer:", error);
-    res.status(500).send("Internal Server Error");
-  }
-});
-
-app.delete("/freelancer/:id", async (req, res) => {
-  try {
-    await Freelancer.deleteOne({ _id: req.params.id });
-    res.send("true");
-  } catch (error) {
-    console.error("Error deleting freelancer:", error);
-    res.status(500).send("Internal Server Error");
-  }
-});
-
-app.put("/freelancer/:id", async (req, res) => {
-  try {
-    await Freelancer.updateOne({ _id: req.params.id }, req.body);
-    res.send("update successful");
-  } catch (error) {
-    console.error("Error updating freelancer:", error);
-    res.status(500).send("Internal Server Error");
-  }
-});
-
-// Contact collection routes
-app.get("/contact", async (req, res) => {
-  try {
-    const contacts = await Contact.find();
-    res.json(contacts);
-  } catch (error) {
-    console.error("Error fetching contacts:", error);
-    res.status(500).send("Internal Server Error");
-  }
-});
-
-app.post("/contact", async (req, res) => {
-  const contact = new Contact(req.body);
-  try {
-    await contact.save();
-    res.json(contact);
-  } catch (error) {
-    console.error("Error adding contact:", error);
-    res.status(500).send("Internal Server Error");
-  }
-});
-
-app.delete("/contact/:id", async (req, res) => {
-  try {
-    await Contact.deleteOne({ _id: req.params.id });
-    res.send("true");
-  } catch (error) {
-    console.error("Error deleting contact:", error);
-    res.status(500).send("Internal Server Error");
-  }
-});
-
-app.put("/contact/:id", async (req, res) => {
-  try {
-    await Contact.updateOne({ _id: req.params.id }, req.body);
-    res.send("update successful");
-  } catch (error) {
-    console.error("Error updating contact:", error);
-    res.status(500).send("Internal Server Error");
-  }
-});
-
-// Start server
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
+// Start the server
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

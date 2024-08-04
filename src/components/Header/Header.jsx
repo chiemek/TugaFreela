@@ -29,7 +29,7 @@ const Header = () => {
             <Link to="/Login">Entrar</Link>
           </li>
         </ul>
-        <Link to="/FreelancerLogin">
+        <Link to="/Basic">
           <Button textColor="#fff" bgColor="rgba(214, 184, 255, 1)">
             PUBLIQUE UM PROJETO
           </Button>

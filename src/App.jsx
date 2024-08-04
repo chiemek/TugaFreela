@@ -10,8 +10,10 @@ import Confirm from "./pages/Password/Confirm/Confirm";
 import Email from "./pages/Password/Email/Email";
 import Privacy from "./pages/Privacy/Privacy";
 import Basic from "./pages/SignUp/Basic/Basic";
-import Customer from "./pages/SignUp/Customer/Customer";
-import FreelancerLogin from "./pages/SignUp/Freelancer/FreelancerLogin";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+// import Customer from "./pages/SignUp/Customer/Customer";
+// import FreelancerLogin from "./pages/SignUp/Freelancer/FreelancerLogin";
 import Terms from "./pages/Terms/Terms";
 import ContactUs from "./pages/ContactUs/ContactUs";
 import Freelance from "./pages/Freelance/Freelance";
@@ -34,8 +36,8 @@ function App() {
           <Route path="/Email" element={<Email />} />
           <Route path="/Privacy" element={<Privacy />} />
           <Route path="/Basic" element={<Basic />} />
-          <Route path="/Customer" element={<Customer />} />
-          <Route path="/FreelancerLogin" element={<FreelancerLogin />} />
+          {/* <Route path="/Customer" element={<Customer />} /> */}
+          {/* <Route path="/FreelancerLogin" element={<FreelancerLogin />} /> */}
           <Route path="/Terms" element={<Terms />} />
           <Route path="/ContactUs" element={<ContactUs />} />
           <Route path="/Freelance" element={<Freelance />} />
@@ -48,6 +50,7 @@ function App() {
         <Privacy />
         {/* <Footer /> */}
       </ModalProvider>
+      <ToastContainer />
     </>
   );
 }
