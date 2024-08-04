@@ -75,6 +75,9 @@ const CombinedForm = () => {
       toast.error("Please select a role.");
     } else if (!termsAccepted) {
       toast.error("You must accept the terms and conditions.");
+    } else if (formState.password !== formState.confirmPassword) {
+      toast.error("Passwords do not match");
+      return;
     } else {
       setShowForm(formState.role);
     }
@@ -82,11 +85,6 @@ const CombinedForm = () => {
 
   const handleRoleFormSubmit = async (e) => {
     e.preventDefault();
-
-    if (formState.password !== formState.confirmPassword) {
-      toast.error("Passwords do not match");
-      return;
-    }
 
     let endpoint = "";
 
