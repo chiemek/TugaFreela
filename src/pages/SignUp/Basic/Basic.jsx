@@ -4,7 +4,6 @@ import Header from "../../../components/Header/Header";
 import Footer2 from "../../../components/Footer/Footer2/Footer2";
 import { Link, useNavigate } from "react-router-dom";
 import Profile from "../../../assets/images/photoIcon.png";
-import { HashLink } from "react-router-hash-link";
 import { toast } from "react-toastify";
 import "./CombinedForm.css";
 
