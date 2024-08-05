@@ -73,7 +73,7 @@ const Login = () => {
             required
           />
           <label htmlFor="password">
-            Forgot password? <Link to="/Email">Recover</Link>
+            Forgot password? <Link to="/forgot-password">Recover</Link>
           </label>
           <button type="submit">Login</button>
         </form>
