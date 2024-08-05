@@ -187,17 +187,26 @@
 
   .cat {
     display: flex;
-    gap: 1rem;
     align-items: center;
+    gap: 2rem;
 
-    select {
-      height: 2.5rem;
-      flex: 1;
-      padding-inline: 1rem;
-      background-color: #f0f0f0;
-      border: none;
-      border-radius: 3px;
-      margin-bottom: 1rem;
+    .cat-div {
+      width: 100%;
+
+      label {
+        font-size: 0.8rem;
+        padding-left: 0.5rem;
+      }
+
+      select {
+        height: 2.5rem;
+        padding-inline: 1rem;
+        background-color: #f0f0f0;
+        border: none;
+        border-radius: 3px;
+        margin-bottom: 1rem;
+        width: 100%;
+      }
     }
   }
 

@@ -35,6 +35,7 @@ const CombinedForm = () => {
   const maxWords = 500;
   const navigate = useNavigate();
 
+  // change form input type
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormState((prevState) => ({
@@ -43,6 +44,7 @@ const CombinedForm = () => {
     }));
   };
 
+  // chnage role
   const handleRoleChange = (e) => {
     const role = e.target.value;
     setFormState((prevState) => ({
@@ -51,6 +53,7 @@ const CombinedForm = () => {
     }));
   };
 
+  // trim description field
   const handleDescriptionChange = (e) => {
     const text = e.target.value;
     const words = text.split(/\s+/);
@@ -68,6 +71,7 @@ const CombinedForm = () => {
     }
   };
 
+  // first form next button
   const handleNext = (e) => {
     e.preventDefault();
 
@@ -83,6 +87,7 @@ const CombinedForm = () => {
     }
   };
 
+  // submit button
   const handleRoleFormSubmit = async (e) => {
     e.preventDefault();
 
@@ -111,6 +116,7 @@ const CombinedForm = () => {
     }
   };
 
+  // skip button for client
   const handleSkip = async (e) => {
     e.preventDefault();
 
@@ -140,10 +146,12 @@ const CombinedForm = () => {
     }
   };
 
+  // terms and condition check box
   const handleCheckboxChange = (e) => {
     setTermsAccepted(e.target.checked);
   };
 
+  // image to display instead of the default profile image
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -155,6 +163,7 @@ const CombinedForm = () => {
     }
   };
 
+  // button for image upload
   const handleButtonClick = () => {
     fileInputRef.current.click();
   };
@@ -387,7 +396,6 @@ const CombinedForm = () => {
                 onChange={handleInputChange}
                 placeholder="NIF"
               />
-              <div className="high">nif</div>
               <input
                 type="text"
                 name="citizenCard"
@@ -395,7 +403,6 @@ const CombinedForm = () => {
                 onChange={handleInputChange}
                 placeholder="Cartão de Cidadão"
               />
-              <div className="high">Cartão de Cidadão</div>
               <input
                 type="file"
                 name="profile"
@@ -411,34 +418,44 @@ const CombinedForm = () => {
                 </button>
               </label>
               <div className="cat">
-                <select
-                  name="categories"
-                  value={formState.categories[0] || ""}
-                  onChange={(e) =>
-                    setFormState((prevState) => ({
-                      ...prevState,
-                      categories: [e.target.value],
-                    }))
-                  }
-                >
-                  <option value="design">Design</option>
-                  <option value="development">Development</option>
-                  <option value="marketing">Marketing</option>
-                </select>
-                <select
-                  name="categories"
-                  value={formState.categories[1] || ""}
-                  onChange={(e) =>
-                    setFormState((prevState) => ({
-                      ...prevState,
-                      categories: [prevState.categories[0], e.target.value],
-                    }))
-                  }
-                >
-                  <option value="design">Design</option>
-                  <option value="development">Development</option>
-                  <option value="marketing">Marketing</option>
-                </select>
+                <div className="cat-div">
+                  <label htmlFor="categories" style={{ display: "block" }}>
+                    Categories:
+                  </label>
+                  <select
+                    name="categories"
+                    value={formState.categories[0] || ""}
+                    onChange={(e) =>
+                      setFormState((prevState) => ({
+                        ...prevState,
+                        categories: [e.target.value],
+                      }))
+                    }
+                  >
+                    <option value="design">Design</option>
+                    <option value="development">Development</option>
+                    <option value="marketing">Marketing</option>
+                  </select>
+                </div>
+                <div className=" cat-div">
+                  <label htmlFor="categories" style={{ display: "block" }}>
+                    sub-Categories
+                  </label>
+                  <select
+                    name="categories"
+                    value={formState.categories[1] || ""}
+                    onChange={(e) =>
+                      setFormState((prevState) => ({
+                        ...prevState,
+                        categories: [prevState.categories[0], e.target.value],
+                      }))
+                    }
+                  >
+                    <option value="design">Design</option>
+                    <option value="development">Development</option>
+                    <option value="marketing">Marketing</option>
+                  </select>
+                </div>
               </div>
               <textarea
                 name="description"
