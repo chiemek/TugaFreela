@@ -10,14 +10,13 @@ const Terms = () => {
       <div id="terme"></div>
       <Header />
       <Showcase
+        className="show-terms"
         text={
           <h5
             style={{
               textAlign: "center",
-              color: "white",
-              width: "80vw",
-              fontSize: "3rem",
-              marginTop: "-5rem",
+
+              fontSize: "2rem",
             }}
           >
             Termos de uso
