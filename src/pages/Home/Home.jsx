@@ -73,13 +73,12 @@ const Home = () => {
                 bgColor="rgba(214, 184, 255, 1)"
                 size="bold"
                 margin="0 1rem 0 0"
-                height="3.5rem"
               >
                 QUERO CONTRATAR
               </Button>
             </Link>
             <Link to="/Freelance">
-              <Button bgColor="rgba(54, 54, 54, 1)" size="bold" height="3.5rem">
+              <Button bgColor="rgba(54, 54, 54, 1)" size="bold">
                 TRABALHE COMO FREELA
               </Button>
             </Link>
