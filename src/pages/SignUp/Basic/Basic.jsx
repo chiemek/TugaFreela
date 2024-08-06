@@ -7,6 +7,12 @@ import Profile from "../../../assets/images/photoIcon.png";
 import { toast } from "react-toastify";
 import "./CombinedForm.css";
 
+// Regular expressions for validation
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const phoneRegex =
+  /^\+?\d{1,3}[-.\s]?(\(?\d{1,5}\)?[-.\s]?)?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/;
+const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[\W_])[A-Za-z\d\W_]{8,}$/;
+
 const CombinedForm = () => {
   const [formState, setFormState] = useState({
     role: "",
@@ -35,7 +41,7 @@ const CombinedForm = () => {
   const maxWords = 500;
   const navigate = useNavigate();
 
-  // change form input type
+  // Change form input type
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormState((prevState) => ({
@@ -44,7 +50,7 @@ const CombinedForm = () => {
     }));
   };
 
-  // chnage role
+  // Change role
   const handleRoleChange = (e) => {
     const role = e.target.value;
     setFormState((prevState) => ({
@@ -53,7 +59,7 @@ const CombinedForm = () => {
     }));
   };
 
-  // trim description field
+  // Trim description field
   const handleDescriptionChange = (e) => {
     const text = e.target.value;
     const words = text.split(/\s+/);
@@ -71,23 +77,71 @@ const CombinedForm = () => {
     }
   };
 
-  // first form next button
+  // Validate input fields
+  const validateForm = () => {
+    let isValid = true;
+
+    // Check required fields
+    const requiredFields = [
+      "role",
+      "phoneNumber",
+      "email",
+      "dateOfBirth",
+      "address",
+      "postalCode",
+      "state",
+      "password",
+      "confirmPassword",
+    ];
+
+    requiredFields.forEach((field) => {
+      if (!formState[field]) {
+        toast.error(`${field.replace(/([A-Z])/g, " $1")} is required.`);
+        isValid = false;
+      }
+    });
+
+    // Specific field validation
+    if (!emailRegex.test(formState.email)) {
+      toast.error("Invalid email format");
+      isValid = false;
+    }
+
+    if (!phoneRegex.test(formState.phoneNumber)) {
+      toast.error("Invalid phone number format");
+      isValid = false;
+    }
+
+    if (!passwordRegex.test(formState.password)) {
+      toast.error(
+        "Password must be at least 8 characters long, include one letter, one number, and one special character"
+      );
+      isValid = false;
+    }
+
+    if (formState.password !== formState.confirmPassword) {
+      toast.error("Passwords do not match");
+      isValid = false;
+    }
+
+    if (!termsAccepted) {
+      toast.error("You must accept the terms and conditions.");
+      isValid = false;
+    }
+
+    return isValid;
+  };
+
+  // First form next button
   const handleNext = (e) => {
     e.preventDefault();
 
-    if (!formState.role) {
-      toast.error("Please select a role.");
-    } else if (!termsAccepted) {
-      toast.error("You must accept the terms and conditions.");
-    } else if (formState.password !== formState.confirmPassword) {
-      toast.error("Passwords do not match");
-      return;
-    } else {
+    if (validateForm()) {
       setShowForm(formState.role);
     }
   };
 
-  // submit button
+  // Submit button
   const handleRoleFormSubmit = async (e) => {
     e.preventDefault();
 
@@ -116,7 +170,7 @@ const CombinedForm = () => {
     }
   };
 
-  // skip button for client
+  // Skip button for client
   const handleSkip = async (e) => {
     e.preventDefault();
 
@@ -146,12 +200,12 @@ const CombinedForm = () => {
     }
   };
 
-  // terms and condition check box
+  // Terms and condition checkbox
   const handleCheckboxChange = (e) => {
     setTermsAccepted(e.target.checked);
   };
 
-  // image to display instead of the default profile image
+  // Image to display instead of the default profile image
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -163,7 +217,7 @@ const CombinedForm = () => {
     }
   };
 
-  // button for image upload
+  // Button for image upload
   const handleButtonClick = () => {
     fileInputRef.current.click();
   };
@@ -230,6 +284,9 @@ const CombinedForm = () => {
                   onChange={handleInputChange}
                 />
               </div>
+              <label htmlFor="" className="dob-c" style={{ fontSize: ".5rem" }}>
+                Date of Birth
+              </label>
               <input
                 type="date"
                 name="dateOfBirth"
@@ -237,6 +294,7 @@ const CombinedForm = () => {
                 placeholder="Data de nascimento"
                 value={formState.dateOfBirth}
                 onChange={handleInputChange}
+                style={{ width: "100%" }}
               />
               <input
                 type="text"
@@ -259,7 +317,7 @@ const CombinedForm = () => {
                   type="text"
                   name="state"
                   id="state"
-                  placeholder="Cidade"
+                  placeholder="Distrito"
                   value={formState.state}
                   onChange={handleInputChange}
                 />
@@ -437,7 +495,7 @@ const CombinedForm = () => {
                     <option value="marketing">Marketing</option>
                   </select>
                 </div>
-                <div className=" cat-div">
+                <div className="cat-div">
                   <label htmlFor="categories" style={{ display: "block" }}>
                     sub-Categories
                   </label>

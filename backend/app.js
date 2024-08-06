@@ -32,13 +32,37 @@ mongoose
 // Define User Schema
 const userSchema = new mongoose.Schema({
   role: { type: String, required: true },
-  phoneNumber: String,
-  email: { type: String, required: true, unique: true },
+  phoneNumber: {
+    type: String,
+    validate: {
+      validator: function (v) {
+        return /^\+?(\d{1,3})?[-.\s]?(\d{3})[-.\s]?(\d{3})[-.\s]?(\d{4})$/.test(
+          v
+        );
+      },
+      message: (props) => `${props.value} is not a valid phone number!`,
+    },
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+    match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+  },
   dateOfBirth: Date,
   address: String,
   postalCode: String,
   state: String,
-  password: { type: String, required: true },
+  password: {
+    type: String,
+    required: true,
+    validate: {
+      validator: function (v) {
+        return /^(?=.*[A-Za-z])(?=.*\d)(?=.*[\W_])[A-Za-z\d\W_]{8,}$/.test(v);
+      },
+      message: (props) => `${props.value} is not a valid password!`,
+    },
+  },
   firstName: String,
   lastName: String,
   id: String,

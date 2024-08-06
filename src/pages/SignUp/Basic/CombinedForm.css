@@ -43,7 +43,6 @@
     .ray {
       display: flex;
       align-items: center;
-      justify-content: space-between;
       gap: 0.5rem;
     }
   }
@@ -240,9 +239,24 @@
     flex-direction: column;
     width: 100%;
     padding-inline: 0.5rem;
-  }
 
-  .container2 {
+    .radio {
+      padding-inline: 2rem;
+      width: auto;
+
+      .ray {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+    }
+
+    .terms {
+      #terms {
+        display: inline-block;
+        width: 0.7rem;
+      }
+    }
   }
 
   .combined-form {
