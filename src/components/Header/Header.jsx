@@ -30,9 +30,11 @@ const Header = () => {
           </li>
         </ul>
         <Link to="/Basic">
-          <Button textColor="#fff" bgColor="rgba(214, 184, 255, 1)">
-            PUBLIQUE UM PROJETO
-          </Button>
+          <div className="b">
+            <Button textColor="#fff" bgColor="rgba(214, 184, 255, 1)">
+              PUBLIQUE UM PROJETO
+            </Button>
+          </div>
         </Link>
       </nav>
     </header>

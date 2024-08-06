@@ -43,3 +43,14 @@
     }
   }
 }
+
+@media (max-width: 800px) {
+  .container5 {
+    width: 100%;
+    padding: 1rem;
+
+    form {
+      width: 100%;
+    }
+  }
+}

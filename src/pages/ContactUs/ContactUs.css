@@ -60,3 +60,53 @@
     font-size: 1.5rem;
   }
 }
+
+@media (max-width: 800px) {
+  .contact {
+    padding: 2rem 0.5rem 2rem 0.5rem;
+    flex-direction: column;
+
+    img {
+      display: none;
+    }
+
+    form {
+      width: 100%;
+      margin-right: 0;
+
+      h3 {
+        font-size: 1.5rem;
+        padding-left: 1rem;
+        margin-bottom: 3rem;
+        border-left: 10px solid rgb(177, 137, 239);
+      }
+
+      input {
+        height: 3rem;
+        padding: 0.7rem;
+
+        &::placeholder {
+          font-size: 1rem;
+          color: black;
+        }
+      }
+
+      textarea {
+        height: 10rem;
+        padding: 0.7rem;
+        margin-bottom: 1rem;
+
+        &::placeholder {
+          font-size: 1rem;
+          color: black;
+        }
+      }
+    }
+    button {
+      padding: 1rem 1.5rem;
+      background-color: rgb(177, 137, 239);
+      font-size: 0.8rem;
+      width: 100%;
+    }
+  }
+}

@@ -5,10 +5,12 @@ import axios from "axios";
 import Header from "../../../components/Header/Header";
 import Footer2 from "../../../components/Footer/Footer2/Footer2";
 import "./Email.css";
+import { useNavigate } from "react-router-dom";
 
 const Email = () => {
   const [email, setEmail] = useState("");
 
+  const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -26,7 +28,7 @@ const Email = () => {
 
       if (response.status === 200) {
         toast.success("Password reset email sent!");
-        // navigate("/instructions"); // Uncomment if using react-router
+        navigate("/Confirm"); // Uncomment if using react-router
       } else {
         toast.error(
           response.data.error || "An error occurred. Please try again."

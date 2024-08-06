@@ -56,6 +56,7 @@ const Freelance = () => {
       <div id="free"></div>
       <Header />
       <Showcase
+        className="shoecase"
         image={
           <img className="showcase-img" src={showcaseImg} alt="woman working" />
         }
@@ -142,22 +143,12 @@ const Freelance = () => {
           </div>
           <div className="button">
             <Link to="/Basic">
-              <Button
-                bgColor="rgb(177, 137, 239)"
-                borderRadius="2rem"
-                padding="1rem 2rem"
-                font="1.5rem"
-              >
+              <Button bgColor="rgb(177, 137, 239)" borderRadius="2rem">
                 PUBLIQUE UM PROJETO
               </Button>
             </Link>
             <Link to="/FreelancerLogin">
-              <Button
-                bgColor="#333"
-                borderRadius="2rem"
-                padding="1rem 2rem"
-                font="1.5rem"
-              >
+              <Button bgColor="#333" borderRadius="2rem">
                 TRABALHE COMO FREELA
               </Button>
             </Link>
@@ -185,10 +176,10 @@ const Freelance = () => {
         </section>
 
         <div className="reviews">
-          <h4>
+          <h5>
             Milhares de pessoas acreditam <br /> em nossos{" "}
             <span>FREELANCES</span>
-          </h4>
+          </h5>
           <div className="card-container">
             {review.map((item, i) => (
               <Card

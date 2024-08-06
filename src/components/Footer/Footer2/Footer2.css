@@ -17,3 +17,16 @@
     color: rgb(125, 125, 247);
   }
 }
+
+@media (max-width: 800px) {
+  .footer {
+    font-size: 0.7rem;
+    justify-content: flex-start;
+
+    padding-inline: 0.5rem;
+    a {
+      font-size: 0.8rem;
+      display: inline-block;
+    }
+  }
+}

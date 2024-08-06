@@ -1,7 +1,9 @@
+import { useState } from "react";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import Showcase from "../../assets/images/img1431.jpg";
 import Showcase2 from "../../assets/images/img1379.jpg";
+import Showcase20 from "../../assets/images/img1411.jpg";
 import Button from "../../components/Button/Button";
 import { Link } from "react-router-dom";
 import "./Home.css";
@@ -23,21 +25,6 @@ import img6 from "../../assets/images/img1395.jpg";
 import { HashLink } from "react-router-hash-link";
 
 const Home = () => {
-  const testimony = [
-    {
-      name: "Eduardo Lopes",
-      image: ProfilePics,
-      title: "Realtech Produções",
-      desc: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. LoremIpsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.`,
-    },
-    // {
-    //   name: "Eduardo Lopes",
-    //   image: ProfilePics,
-    //   title: "Realtech Produções",
-    //   desc: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. LoremIpsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.`,
-    // },
-  ];
-
   const cards = [
     {
       image: img1,
@@ -80,21 +67,23 @@ const Home = () => {
               online.
             </span>
           </h2>
-          <Link to="/ContactUs">
-            <Button
-              bgColor="rgba(214, 184, 255, 1)"
-              size="bold"
-              margin="0 1rem 0 0"
-              height="3.5rem"
-            >
-              QUERO CONTRATAR
-            </Button>
-          </Link>
-          <Link to="/Freelance">
-            <Button bgColor="rgba(54, 54, 54, 1)" size="bold" height="3.5rem">
-              TRABALHE COMO FREELA
-            </Button>
-          </Link>
+          <div className="main-button">
+            <Link to="/ContactUs">
+              <Button
+                bgColor="rgba(214, 184, 255, 1)"
+                size="bold"
+                margin="0 1rem 0 0"
+                height="3.5rem"
+              >
+                QUERO CONTRATAR
+              </Button>
+            </Link>
+            <Link to="/Freelance">
+              <Button bgColor="rgba(54, 54, 54, 1)" size="bold" height="3.5rem">
+                TRABALHE COMO FREELA
+              </Button>
+            </Link>
+          </div>
         </div>
         <img src={Showcase} alt="image of a lady working" />
       </main>
@@ -143,25 +132,13 @@ const Home = () => {
 
         <div className="button">
           <Link to="/ContactUs">
-            <Button
-              bgColor="rgba(214, 184, 255, 1)"
-              size="bold"
-              padding="1.8rem 3rem"
-              font="1rem"
-            >
+            <Button bgColor="rgba(214, 184, 255, 1)">
               PUBLIQUE UM PROJETO
             </Button>
           </Link>
 
           <Link to="/Freelance">
-            <Button
-              bgColor="rgba(54, 54, 54, 1)"
-              size="bold"
-              padding="1.8rem 3rem"
-              font="1rem"
-            >
-              TRABALHE COMO FREELA
-            </Button>
+            <Button bgColor="rgba(54, 54, 54, 1)">TRABALHE COMO FREELA</Button>
           </Link>
         </div>
       </div>
@@ -180,14 +157,11 @@ const Home = () => {
               interessados na sua marca e muito mais!
             </p>
             <HashLink to="/ContactUs#conta">
-              <Button
-                bgColor="rgba(214, 184, 255, 1)"
-                size="bold"
-                height="3.5rem"
-                padding="1rem 2.5rem"
-              >
-                COMEÇE SUA JORNADA!
-              </Button>
+              <div className="btn-con">
+                <Button bgColor="rgba(214, 184, 255, 1)">
+                  COMEÇE SUA JORNADA!
+                </Button>
+              </div>
             </HashLink>
           </div>
           <img src={Showcase2} alt="image of a lady working" />
@@ -216,25 +190,13 @@ const Home = () => {
 
         <div className="button">
           <HashLink to="/ContactUs#conta">
-            <Button
-              bgColor="rgba(214, 184, 255, 1)"
-              size="bold"
-              padding="1.8rem 3rem"
-              font="1rem"
-            >
+            <Button bgColor="rgba(214, 184, 255, 1)">
               PUBLIQUE UM PROJETO
             </Button>
           </HashLink>
 
           <Link to="/Freelance">
-            <Button
-              bgColor="rgba(54, 54, 54, 1)"
-              size="bold"
-              padding="1.8rem 3rem"
-              font="1rem"
-            >
-              TRABALHE COMO FREELA
-            </Button>
+            <Button bgColor="rgba(54, 54, 54, 1)">TRABALHE COMO FREELA</Button>
           </Link>
         </div>
       </div>
@@ -244,16 +206,7 @@ const Home = () => {
           Milhares de pessoas acreditam <br />
           emnossos <span>FREELANCES</span>
         </h2>
-
-        {testimony.map((testimony, i) => (
-          <Testimony
-            key={i}
-            image={testimony.image}
-            desc={testimony.desc}
-            name={testimony.name}
-            title={testimony.title}
-          />
-        ))}
+        <Testimony />
       </div>
 
       <div className="what-we-do">
@@ -272,24 +225,57 @@ const Home = () => {
   );
 };
 
-const Testimony = ({ image, desc, name, title }) => {
+const Testimony = () => {
+  const [currentTestimony, setCurrentTestimony] = useState(0);
+
+  const testimony = [
+    {
+      id: 1,
+      name: "Eduardo Lopes",
+      image: ProfilePics,
+      title: "Realtech Produções",
+      desc: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. LoremIpsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.`,
+    },
+    {
+      id: 2,
+      name: "Eduardo Peace",
+      image: ProfilePics,
+      title: "Realtech Produções",
+      desc: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. LoremIps`,
+    },
+  ];
+
+  const handleDotClick = (index) => {
+    setCurrentTestimony(index);
+  };
+
   return (
     <div className="testimony-container">
       <img src={Quote} alt="quotation" className="quote" />
-
-      <div className="testmony-details">
-        <img src={image} alt="image.name" />
-        <div className="text">
-          <p>{desc}</p>
-          <h3>
-            {name} - {title}
-          </h3>
+      <div className="det">
+        <div className="testmony-details">
+          <img
+            src={testimony[currentTestimony].image}
+            alt={testimony[currentTestimony].name}
+          />
+          <div className="text">
+            <p>{testimony[currentTestimony].desc}</p>
+            <h3>
+              {testimony[currentTestimony].name} -{" "}
+              {testimony[currentTestimony].title}
+            </h3>
+          </div>
         </div>
       </div>
-      <div className="dots">
-        <div className="dot active"></div>
-        <div className="dot"></div>
-        <div className="dot"></div>
+
+      <div className="dots" style={{ cursor: "pointer" }}>
+        {testimony.map((_, index) => (
+          <div
+            key={index}
+            className={`dot ${index === currentTestimony ? "active" : ""}`}
+            onClick={() => handleDotClick(index)}
+          ></div>
+        ))}
       </div>
     </div>
   );

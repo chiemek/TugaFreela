@@ -229,3 +229,26 @@
   margin-bottom: 1rem;
   font-size: 1rem;
 }
+
+@media (max-width: 800px) {
+  .containerForm {
+    padding-block: 1.5rem;
+  }
+
+  .basic-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-inline: 0.5rem;
+  }
+
+  .container2 {
+  }
+
+  .combined-form {
+    padding-block: 2rem;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+}

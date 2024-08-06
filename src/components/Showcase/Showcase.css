@@ -43,3 +43,40 @@
     }
   }
 }
+
+@media (max-width: 800px) {
+  .showcase {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 1rem;
+    background: transparent;
+    background: linear-gradient(
+      90deg,
+      rgba(15, 18, 27, 1) 0%,
+      rgba(22, 15, 73, 1) 28%,
+      rgba(155, 135, 229, 1) 66%
+    );
+
+    .showcase-img {
+      display: none;
+    }
+
+    .text {
+      z-index: 10;
+      color: #debdde;
+      width: 0;
+      font-size: 0.8rem;
+      padding: 1rem;
+
+      h3 {
+        margin-bottom: 0.8rem;
+      }
+
+      .button {
+        display: flex;
+        gap: 1rem;
+      }
+    }
+  }
+}
