@@ -318,18 +318,21 @@ main {
 /* media query */
 @media (max-width: 800px) {
   main {
+    height: 100%;
+
     .text {
       position: absolute;
       top: 0;
+      bottom: 0;
       padding: 2rem;
       width: 100%;
-      height: auto;
+      height: 98%;
       background: rgba(38, 37, 37, 0.605);
       background: linear-gradient(none);
       color: #f9f6f6;
 
       h2 {
-        font-size: 1.5rem;
+        font-size: 1.2rem;
         line-height: 1.3rem;
         margin-bottom: 1rem;
         font-weight: bold;
@@ -357,7 +360,7 @@ main {
     img {
       width: 100%;
       object-fit: contain;
-      height: 100%;
+      height: auto;
     }
   }
   .how-it-works {

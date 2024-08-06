@@ -77,14 +77,16 @@ footer {
 @media (max-width: 800px) {
   footer {
     padding: 0.5rem 0.5rem 2rem 0.5rem;
+
     .containfooter {
       /* padding-block: 2rem; */
-      width: 90vw;
+      width: 19rem;
       display: flex;
       justify-content: center;
       align-items: center;
       flex-wrap: wrap;
       column-gap: 2rem;
+      margin-inline: auto;
 
       a {
         font-size: 0.7rem;
@@ -117,6 +119,7 @@ footer {
 
         margin-bottom: 0.5rem;
         box-shadow: -7px 20px 10px -17px rgba(180, 189, 121, 1);
+
         ul > li:first-child a {
           margin-bottom: 0.4rem;
           font-size: 0.6rem;
