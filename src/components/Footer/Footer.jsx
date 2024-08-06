@@ -35,7 +35,7 @@ const Footer = () => {
       <div className="freelancer">
         <ul>
           <li>
-            <Link to="/FreelancerLogin">Para Freelancer</Link>
+            <Link to="/Basic">Para Freelancer</Link>
           </li>
           <li>
             <Link to="/Basic">Projetos</Link>
@@ -51,7 +51,7 @@ const Footer = () => {
       <div className="customer">
         <ul>
           <li>
-            <Link to="/Customer">Para Clientes</Link>
+            <Link to="/Basic">Para Clientes</Link>
           </li>
           <li>
             <HashLink to="/Freelance#free">Freelancers</HashLink>
