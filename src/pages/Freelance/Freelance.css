@@ -1,6 +1,33 @@
 #how-it-works {
   /* padding: 5rem; */
 
+  .showcase {
+    .text {
+      text-align: center;
+      width: 100%;
+    }
+
+    img {
+      display: none;
+    }
+
+    p {
+      display: none;
+    }
+
+    .button {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+
+      button {
+        width: 7rem;
+        height: 3rem;
+        font-size: 0.5rem;
+      }
+    }
+  }
+
   h2 {
     text-align: center;
     font-size: 3rem;
@@ -126,6 +153,17 @@
       img {
         width: 15rem;
         margin-bottom: 3rem;
+        margin-inline: 5rem;
+      }
+
+      p {
+        margin-bottom: 2rem;
+      }
+
+      h3 {
+        color: purple;
+        text-align: left;
+        margin-left: -3rem;
       }
     }
   }
@@ -168,6 +206,7 @@
 /* media query */
 @media (max-width: 800px) {
   .showcase {
+    display: block;
     .text {
       text-align: center;
       width: 100%;
@@ -184,11 +223,12 @@
     .button {
       width: 100%;
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
 
       button {
         width: 7rem;
-        font-size: 0.7rem;
+        height: auto;
+        font-size: 0.5rem;
       }
     }
   }
@@ -271,7 +311,7 @@
 
     .reviews {
       background-color: #edecec;
-      padding: 4rem 0.5rem;
+      padding: 4rem 1rem;
 
       h5 {
         font-size: 1.3rem;
@@ -283,7 +323,7 @@
         flex-wrap: nowrap;
         overflow-x: scroll;
         gap: 3rem;
-        width: 100%;
+        width: auto;
       }
 
       .card {
@@ -291,13 +331,20 @@
         flex-direction: column;
         align-items: center;
         padding: 5rem 3rem;
-        width: 40rem;
+        width: 90vw;
         border-radius: 10px;
         background-color: #fff;
 
         img {
-          width: 13rem;
+          width: 5rem;
           margin-bottom: 3rem;
+          margin-inline: 5rem;
+        }
+        h3 {
+          color: purple;
+          text-align: left;
+          font-size: 0.8rem;
+          margin-left: 0;
         }
       }
     }
@@ -307,7 +354,8 @@
 
       h3 {
         font-size: 1.5rem;
-        padding-block: 2rem;
+        padding-block: 1rem;
+        padding-inline: 2rem;
 
         & span {
           color: rgb(177, 137, 239);
@@ -323,12 +371,12 @@
         text-align: center;
 
         .lastOne {
-          width: 15rem;
-          height: 10rem;
+          width: 98%;
+          height: 100%;
         }
 
         .one {
-          margin-bottom: 2rem;
+          margin-bottom: 5rem;
         }
       }
 

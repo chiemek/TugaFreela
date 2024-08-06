@@ -14,21 +14,7 @@ const FAQ = () => {
     <>
       <div id="faq"></div>
       <Header />
-      <Showcase
-        text={
-          <h5
-            style={{
-              textAlign: "center",
-              color: "white",
-              width: "80vw",
-              fontSize: "3rem",
-              marginTop: "-5rem",
-            }}
-          >
-            Perguntas Frequentes
-          </h5>
-        }
-      />
+      <Showcase text={<h5>Perguntas Frequentes</h5>} />
 
       <div className="faq-con">
         <section className="right">

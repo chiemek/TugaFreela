@@ -1,3 +1,7 @@
+.showcase {
+  height: auto;
+}
+
 .showcase-img-contact {
   z-index: 10;
   height: 20rem;
@@ -62,6 +66,9 @@
 }
 
 @media (max-width: 800px) {
+  .showcase {
+    display: none;
+  }
   .contact {
     padding: 2rem 0.5rem 2rem 0.5rem;
     flex-direction: column;

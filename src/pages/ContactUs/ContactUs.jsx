@@ -44,7 +44,6 @@ const ContactUs = () => {
             />
           </>
         }
-        height="65vh"
       />
 
       <div className="contact">

@@ -31,7 +31,7 @@ footer {
     }
 
     .logo {
-      /* border: 1px solid #fff; */
+      margin-top: 5.5rem;
 
       ul {
         padding-left: 2rem;
@@ -100,6 +100,8 @@ footer {
       .logo {
         /* border: 1px solid #fff; */
         margin-bottom: 1.5rem;
+        margin-top: 0;
+
         box-shadow: -7px 20px 10px -17px rgba(180, 189, 121, 1);
 
         ul {

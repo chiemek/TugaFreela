@@ -20,12 +20,12 @@
 
 @media (max-width: 800px) {
   .footer {
-    font-size: 0.7rem;
+    font-size: 0.4rem;
     justify-content: flex-start;
-
+    padding-block: 1rem;
     padding-inline: 0.5rem;
     a {
-      font-size: 0.8rem;
+      font-size: 0.5rem;
       display: inline-block;
     }
   }
