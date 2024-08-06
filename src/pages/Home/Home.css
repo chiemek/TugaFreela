@@ -324,7 +324,7 @@ main {
       padding: 2rem;
       width: 100%;
       border: 1px solid #fff;
-      height: 30vh;
+      height: 28vh;
       background: rgba(38, 37, 37, 0.605);
       background: linear-gradient(none);
       color: #f9f6f6;
@@ -506,6 +506,7 @@ main {
 
       button {
         width: 8rem;
+        height: 2rem;
         font-size: 0.5rem;
         padding: "1rem 1.5rem";
       }
