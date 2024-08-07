@@ -1,0 +1,7 @@
+[build]
+  command = "npm run build"  # Runs the Vite build command
+  publish = "dist"  # Vite's default output directory
+
+[context.production.environment]
+  # Set environment variables if needed
+  NODE_ENV = "production"
