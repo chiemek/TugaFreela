@@ -13,11 +13,15 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Serve static files from the React app
-app.use(express.static(path.join(__dirname, "../client/build")));
+// Serve static files from the node-js-getting-started/public directory
+app.use(
+  express.static(path.join(__dirname, "../node-js-getting-started/public"))
+);
 
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../client/build", "index.html"));
+  res.sendFile(
+    path.join(__dirname, "../node-js-getting-started/public/index.html")
+  );
 });
 
 // Define the MONGO_URI
